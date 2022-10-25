@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import SearchForm from './components/SearchForm';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
 import Results from './components/Results';
-import Nav from './components/Nav';
+
+import Photos from './components/Photos';
 import apiKey from './config';
 
 function App() {
@@ -10,15 +12,10 @@ function App() {
     useEffect(() => {});
 
     return (
-        <div className="App">
-            <div className="container">
-                <h1>Photo Search App</h1>
-                <p>This is a simple search app</p>
-
-                <SearchForm />
-                <Nav />
-                <Results />
-            </div>
+        <div className="container">
+            <Routes>
+                <Route path="/*" element={<Home />} />
+            </Routes>
         </div>
     );
 }

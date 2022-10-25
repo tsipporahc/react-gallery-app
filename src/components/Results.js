@@ -7,7 +7,6 @@ const Results = () => {
         <div className="photo-container">
             <h2>Results</h2>
             <Photos />
-            <NotFound />
         </div>
     );
 };
