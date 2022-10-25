@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import SearchForm from './components/SearchForm';
+import Results from './components/Results';
+import Nav from './components/Nav';
+import apiKey from './config';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [photo, setPhoto] = useState([]);
+
+    useEffect(() => {});
+
+    return (
+        <div className="App">
+            <div className="container">
+                <h1>Photo Search App</h1>
+                <p>This is a simple search app</p>
+
+                <SearchForm />
+                <Nav />
+                <Results />
+            </div>
+        </div>
+    );
 }
 
 export default App;
