@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 
-const SearchForm = () => {
+const SearchForm = (props) => {
     const [value, setValue] = useState('');
+
+    const onSearchChange = (e) => {
+        setValue(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        //e.preventDefault();
+        props.onSearch(value);
+        e.currentTarget.reset();
+    };
+
     return (
-        <form className="search-form">
+        <form className="search-form" onSubmit={handleSubmit}>
             <input
                 type="search"
                 name="search"
                 placeholder="Search"
                 required=""
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={onSearchChange}
             />
             <button type="submit" className="search-button">
                 <svg

@@ -2,37 +2,26 @@ import React from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Results from './Results';
 
-const Nav = () => {
+const Nav = ({ data }) => {
     return (
         <nav className="main-nav">
             <ul>
                 <li>
-                    <NavLink to="cats" end>
-                        Cats
+                    <NavLink to="/pandas" onClick={() => data('pandas')}>
+                        Pandas
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to="dogs"
-                        end
-                        className={({ isActive }) =>
-                            isActive ? 'custom-class-name' : undefined
-                        }
-                    >
-                        Dogs
+                    <NavLink to="/elephants" onClick={() => data('elephant')}>
+                        Elephants
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="hedgehogs" end>
-                        Hedgehogs
+                    <NavLink to="/birds" onClick={() => data('bird')}>
+                        Birds
                     </NavLink>
                 </li>
             </ul>
-            <Routes>
-                <Route path="/cats" element={<Results />} />
-                <Route path="/dogs" element={<Results />} />
-                <Route path="/hedgehogs" element={<Results />} />
-            </Routes>
         </nav>
     );
 };
