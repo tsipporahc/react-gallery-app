@@ -57,7 +57,7 @@ function App() {
                 <Route path="/birds" element={<Results data={photo} />} />
                 <Route
                     path="/search/:keyword"
-                    element={<Results data={photo} fetchData={fetchData} />}
+                    element={<Results data={photo} />}
                 />
 
                 <Route path="/" element={<Results data={photo} />} />
