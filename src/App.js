@@ -17,18 +17,13 @@ function App() {
     const location = useLocation();
     const [loading, setLoading] = useState(true);
 
-    /* useEffect(() => {
-        console.log(location.pathname);
-        if (location.pathname !== '/search') {
+    useEffect(() => {
+        if (location.pathname !== '/') {
             fetchData(location.pathname.replace('/', ''));
         } else {
-            fetchData();
+            fetchData('panda');
         }
-    }, [location.pathname]); */
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+    }, [location.pathname]);
 
     const fetchData = (keyword = 'pandas') => {
         axios
@@ -44,22 +39,6 @@ function App() {
             });
     }; // update photo state with response data
 
-    console.log(photo);
-    console.log(loading);
-
-    /* const performSearch = (query) => {
-        axios
-            .get(
-                `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
-            )
-            .then((response) => {
-                setQuery(response.data.photos.photo);
-            })
-            .catch((error) => {
-                console.log('Error fetching and parsing data', error);
-            });
-    }; */
-
     return (
         <div className="container">
             <h1>Photo Search App</h1>
@@ -67,12 +46,21 @@ function App() {
             <SearchForm onSearch={fetchData} />
             <Nav data={fetchData} />
             <Routes>
-                <Route path="/pandas" element={<Results data={photo} />} />
-                <Route path="/elephants" element={<Results data={photo} />} />
-                <Route path="/birds" element={<Results data={photo} />} />
+                <Route
+                    path="/pandas"
+                    element={<Results data={photo} loading={loading} />}
+                />
+                <Route
+                    path="/elephants"
+                    element={<Results data={photo} loading={loading} />}
+                />
+                <Route
+                    path="/birds"
+                    element={<Results data={photo} loading={loading} />}
+                />
                 <Route
                     path="/search/:input"
-                    element={<Results data={photo} />}
+                    element={<Results data={photo} loading={loading} />}
                 />
 
                 <Route
@@ -81,7 +69,6 @@ function App() {
                 />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-            {/* {loading ? <p>'Loading...'</p> : <Results data={photo} />} */}
         </div>
     );
 }

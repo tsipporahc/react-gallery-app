@@ -6,7 +6,6 @@ import NotFound from './NotFound';
 const Results = (props) => {
     const results = props.data;
     let photos;
-    console.log(props.loading);
     /*     let { value } = useParams();
 
     useEffect(() => {
