@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 const Results = (props) => {
     const results = props.data;
     let photos;
+    console.log(props.loading);
     /*     let { value } = useParams();
 
     useEffect(() => {
@@ -29,7 +30,7 @@ const Results = (props) => {
     }
     return (
         <div className="photo-container">
-            <ul>{photos}</ul>
+            {props.loading ? <p>Loading...</p> : <ul>{photos}</ul>}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useParams } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/Home';
 import Results from './components/Results';
@@ -14,6 +14,17 @@ import NotFound from './components/NotFound';
 function App() {
     const [photo, setPhoto] = useState([]);
     //const [query, setQuery] = useState();
+    const location = useLocation();
+    const [loading, setLoading] = useState(true);
+
+    /* useEffect(() => {
+        console.log(location.pathname);
+        if (location.pathname !== '/search') {
+            fetchData(location.pathname.replace('/', ''));
+        } else {
+            fetchData();
+        }
+    }, [location.pathname]); */
 
     useEffect(() => {
         fetchData();
@@ -25,12 +36,16 @@ function App() {
                 `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${keyword}&per_page=24&format=json&nojsoncallback=1`
             )
             .then((response) => {
+                setLoading(false);
                 setPhoto(response.data.photos.photo);
             })
             .catch((error) => {
                 console.log('Error fetching and parsing data', error);
             });
     }; // update photo state with response data
+
+    console.log(photo);
+    console.log(loading);
 
     /* const performSearch = (query) => {
         axios
@@ -56,13 +71,17 @@ function App() {
                 <Route path="/elephants" element={<Results data={photo} />} />
                 <Route path="/birds" element={<Results data={photo} />} />
                 <Route
-                    path="/search/:keyword"
+                    path="/search/:input"
                     element={<Results data={photo} />}
                 />
 
-                <Route path="/" element={<Results data={photo} />} />
+                <Route
+                    path="/"
+                    element={<Results data={photo} loading={loading} />}
+                />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            {/* {loading ? <p>'Loading...'</p> : <Results data={photo} />} */}
         </div>
     );
 }

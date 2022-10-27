@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SearchForm = (props) => {
+    const navigate = useNavigate();
     const [value, setValue] = useState('');
 
     const onSearchChange = (e) => {
@@ -11,6 +13,7 @@ const SearchForm = (props) => {
         e.preventDefault();
         props.onSearch(value);
         e.currentTarget.reset();
+        navigate(`search/${value}`);
     };
 
     return (
