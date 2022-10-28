@@ -10,9 +10,10 @@ const SearchForm = (props) => {
     };
 
     const handleSubmit = (e) => {
+        props.setLoading(true);
         e.preventDefault();
         props.onSearch(value);
-        e.currentTarget.reset();
+        //e.currentTarget.reset();
         navigate(`search/${value}`);
     };
 

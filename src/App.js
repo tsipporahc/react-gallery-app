@@ -34,7 +34,7 @@ function App() {
         <div className="container">
             <h1>Photo Search App</h1>
             <p>This is a simple search app</p>
-            <SearchForm onSearch={fetchData} />
+            <SearchForm onSearch={fetchData} setLoading={setLoading} />
             <Nav data={fetchData} />
             <Routes>
                 <Route
