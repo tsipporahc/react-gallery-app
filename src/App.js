@@ -1,40 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import Home from './components/Home';
 import Results from './components/Results';
 import Nav from './components/Nav';
-
-import Photos from './components/Photos';
 import apiKey from './config';
 import SearchForm from './components/SearchForm';
-import NotFound from './components/NotFound';
 import Error from './components/Error';
 
 // App is a container component that holds data fetch logic, and photo state
 function App() {
     const [photo, setPhoto] = useState([]);
-    //const [query, setQuery] = useState();
-    const location = useLocation();
     const [loading, setLoading] = useState(true);
-
-    /* useEffect(() => {
-        if (location.pathname !== '/') {
-            fetchData(location.pathname.replace('/', ''));
-        } else if (location.pathname == '/search/') {
-            fetchData(location.pathname.replace('/search/', ''));
-        } else {
-            fetchData('panda');
-        }
-    }, [location.pathname]);
- */
-    /* useEffect(() => {
-        if (location.pathname !== '/') {
-            fetchData(location.pathname.replace('/', ''));
-        } else {
-            fetchData('panda');
-        }
-    }, [location.pathname]); */
 
     useEffect(() => {
         fetchData('panda');
@@ -72,7 +48,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/pandas/"
+                    path="/pandas"
                     element={
                         <Results
                             data={photo}
@@ -82,7 +58,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/elephants/"
+                    path="/elephants"
                     element={
                         <Results
                             data={photo}
@@ -92,7 +68,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/birds/"
+                    path="/birds"
                     element={
                         <Results
                             data={photo}

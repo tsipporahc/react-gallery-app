@@ -1,7 +1,5 @@
 import React from 'react';
 
-//img - https://live.staticflickr.com/${props.server}/${props.id}_${props.secret}.jpg
-
 const Photos = (props) => {
     return (
         <li>

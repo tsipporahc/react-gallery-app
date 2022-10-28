@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
-import Results from './Results';
+import { NavLink } from 'react-router-dom';
 
 const Nav = ({ data }) => {
     return (
