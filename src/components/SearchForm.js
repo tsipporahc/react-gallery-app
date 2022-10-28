@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SearchForm = (props) => {
     const navigate = useNavigate();
-    const [value, setValue] = useState('');
+    let searchInput = useRef('');
+    let searchInputValue = searchInput.current.value;
 
     const onSearchChange = (e) => {
-        setValue(e.target.value);
+        searchInputValue = e.target.value;
     };
 
     const handleSubmit = (e) => {
         props.setLoading(true);
         e.preventDefault();
-        props.onSearch(value);
-        //e.currentTarget.reset();
-        navigate(`search/${value}`);
+        props.onSearch(searchInputValue);
+        navigate(`search/${searchInputValue}`);
+        e.currentTarget.reset();
     };
 
     return (
@@ -24,7 +25,7 @@ const SearchForm = (props) => {
                 name="search"
                 placeholder="Search"
                 required=""
-                value={value}
+                ref={searchInput}
                 onChange={onSearchChange}
             />
             <button type="submit" className="search-button">

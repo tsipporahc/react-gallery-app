@@ -13,10 +13,10 @@ function App() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchData('panda');
+        fetchData('red panda');
     }, []);
 
-    const fetchData = (keyword = 'pandas') => {
+    const fetchData = (keyword) => {
         axios
             .get(
                 `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${keyword}&per_page=24&format=json&nojsoncallback=1`
