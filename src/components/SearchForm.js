@@ -1,22 +1,23 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// SearchForm.js is a component that renders the search form and handles the search field functionality
 const SearchForm = (props) => {
     const navigate = useNavigate();
-    let searchInput = useRef('');
-    let searchInputValue = searchInput.current.value;
+    let searchInput = useRef(''); // returns an object, doesnt cause the component to re-render, and used to reference DOM elements
+    let searchInputValue = searchInput.current.value; // returns the value of the search field
 
     const onSearchChange = (e) => {
         searchInputValue = e.target.value;
-    };
+        props.setLoading(true);
+    }; // while user inputs search in the search field, this function sets the searchInputValue and sets the loading state to true in order to render the loading state while searching
 
     const handleSubmit = (e) => {
-        props.setLoading(true);
         e.preventDefault();
-        props.onSearch(searchInputValue);
+        props.fetchData(searchInputValue);
         navigate(`search/${searchInputValue}`);
         e.currentTarget.reset();
-    };
+    }; // when user submits the form, the data is fetched using the search field value
 
     return (
         <form className="search-form" onSubmit={handleSubmit}>
@@ -25,8 +26,8 @@ const SearchForm = (props) => {
                 name="search"
                 placeholder="Search"
                 required=""
-                ref={searchInput}
-                onChange={onSearchChange}
+                ref={searchInput} // sets ref
+                onChange={onSearchChange} // calls the onSearchChange call back function
             />
             <button type="submit" className="search-button">
                 <svg

@@ -7,7 +7,7 @@ import apiKey from './config';
 import SearchForm from './components/SearchForm';
 import Error from './components/Error';
 
-// App is a container component that holds data fetch logic, and photo state
+// App.js is a container component that holds data fetch logic, photo state, and loading state.
 function App() {
     const [photo, setPhoto] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -34,8 +34,10 @@ function App() {
         <div className="container">
             <h1>Photo Search App</h1>
             <p>This is a simple search app</p>
-            <SearchForm onSearch={fetchData} setLoading={setLoading} />
+            <SearchForm fetchData={fetchData} setLoading={setLoading} />
             <Nav data={fetchData} />
+
+            {/* Search Routes */}
             <Routes>
                 <Route
                     path="/"
