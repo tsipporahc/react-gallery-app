@@ -9,6 +9,7 @@ import Photos from './components/Photos';
 import apiKey from './config';
 import SearchForm from './components/SearchForm';
 import NotFound from './components/NotFound';
+import Error from './components/Error';
 
 // App is a container component that holds data fetch logic, and photo state
 function App() {
@@ -17,13 +18,27 @@ function App() {
     const location = useLocation();
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    /* useEffect(() => {
+        if (location.pathname !== '/') {
+            fetchData(location.pathname.replace('/', ''));
+        } else if (location.pathname == '/search/') {
+            fetchData(location.pathname.replace('/search/', ''));
+        } else {
+            fetchData('panda');
+        }
+    }, [location.pathname]);
+ */
+    /* useEffect(() => {
         if (location.pathname !== '/') {
             fetchData(location.pathname.replace('/', ''));
         } else {
             fetchData('panda');
         }
-    }, [location.pathname]);
+    }, [location.pathname]); */
+
+    useEffect(() => {
+        fetchData('panda');
+    }, []);
 
     const fetchData = (keyword = 'pandas') => {
         axios
@@ -47,27 +62,61 @@ function App() {
             <Nav data={fetchData} />
             <Routes>
                 <Route
-                    path="/pandas"
-                    element={<Results data={photo} loading={loading} />}
+                    path="/"
+                    element={
+                        <Results
+                            data={photo}
+                            loading={loading}
+                            fetchData={fetchData}
+                        />
+                    }
                 />
                 <Route
-                    path="/elephants"
-                    element={<Results data={photo} loading={loading} />}
+                    path="/pandas/"
+                    element={
+                        <Results
+                            data={photo}
+                            loading={loading}
+                            fetchData={fetchData}
+                        />
+                    }
                 />
                 <Route
-                    path="/birds"
-                    element={<Results data={photo} loading={loading} />}
+                    path="/elephants/"
+                    element={
+                        <Results
+                            data={photo}
+                            loading={loading}
+                            fetchData={fetchData}
+                        />
+                    }
+                />
+                <Route
+                    path="/birds/"
+                    element={
+                        <Results
+                            data={photo}
+                            loading={loading}
+                            fetchData={fetchData}
+                        />
+                    }
                 />
                 <Route
                     path="/search/:input"
-                    element={<Results data={photo} loading={loading} />}
+                    element={
+                        <Results
+                            data={photo}
+                            loading={loading}
+                            fetchData={fetchData}
+                        />
+                    }
                 />
 
                 <Route
                     path="/"
                     element={<Results data={photo} loading={loading} />}
                 />
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<Error />} />
             </Routes>
         </div>
     );
