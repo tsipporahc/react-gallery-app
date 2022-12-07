@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Results from './components/Results';
 import Nav from './components/Nav';
-//import apiKey from './config';
+import apiKey from './config';
 import SearchForm from './components/SearchForm';
 import Error from './components/Error';
 
