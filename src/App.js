@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Results from './components/Results';
 import Nav from './components/Nav';
-import apiKey from './config';
+//import apiKey from './config';
 import SearchForm from './components/SearchForm';
 import Error from './components/Error';
 
@@ -11,6 +11,7 @@ import Error from './components/Error';
 function App() {
   const [photo, setPhoto] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     fetchData('red panda');
@@ -19,7 +20,7 @@ function App() {
   const fetchData = (keyword) => {
     axios
       .get(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${keyword}&per_page=24&format=json&nojsoncallback=1`
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&tags=${keyword}&per_page=24&format=json&nojsoncallback=1`
       )
       .then((response) => {
         setLoading(false);
