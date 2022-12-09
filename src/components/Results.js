@@ -14,10 +14,13 @@ const Results = (props) => {
 
   useEffect(() => {
     if (input) {
+      // eslint-disable-next-line
       fetchData(input); // when :input param changes it will gather the string, and uses it in the fetchData function
     } else if (pathName) {
+      // eslint-disable-next-line
       fetchData(pathName); // takes the path from the url and uses that string, and uses it in the fetchData function
     } else {
+      // eslint-disable-next-line
       fetchData('red panda'); // when there is no input, or pathname, 'red panda' is used in the fetchData function
     } // eslint-disable-next-line
   }, [location.pathname, input]); // dependency array - it checks if the pathname or the :input change and when they do, useEffect runs.
